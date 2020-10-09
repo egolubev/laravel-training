@@ -32,7 +32,6 @@
         </form>
     </div>
 
-    <!-- TODO: Current Tasks -->
     <!-- Current Tasks -->
     @if (count($tasks) > 0)
         <div class="panel panel-default">
@@ -59,22 +58,12 @@
                             </td>
 
                             <td>
-                                <tr>
-                                    <!-- Task Name -->
-                                    <td class="table-text">
-                                        <div>{{ $task->name }}</div>
-                                    </td>
+                                <form action="/task/{{ $task->id }}" method="POST">
+                                    {{ csrf_field() }}
+                                    {{ method_field('DELETE') }}
 
-                                    <!-- Delete Button -->
-                                    <td>
-                                        <form action="/task/{{ $task->id }}" method="POST">
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-
-                                            <button>Delete Task</button>
-                                        </form>
-                                    </td>
-                                </tr>
+                                    <button>Delete Task</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach
